@@ -1,5 +1,5 @@
 const express = require('express');
-const chirpsStore = require('../filestore');
+const chirpsStore = require('../chirpstore');
 let router = express.Router();
 
 router.get('/:id?', (req, res) => {
@@ -17,6 +17,16 @@ router.post('/', (req, res) => {
 });
 
 
+router.put('/:id', (req, res) => {
+    chirpsStore.UpdateChirp(req.params.id, req.body);
+    res.sendStatus(200);
+});
+
+
+router.delete('/:id', (req, res) => {
+    chirpsStore.DeleteChirp(req.params.id);
+    res.sendStatus(200);
+});
 
 module.exports = router;
 
