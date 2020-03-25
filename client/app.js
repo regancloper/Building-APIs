@@ -34,11 +34,9 @@ class Comment {
         this.deleteBtn.click(() => {
             $.ajax({
                 type: "DELETE",
-                url: `/api/chirps/${this.id}`,
-                success: () => {
-                    this.div.remove();
-                }
-            });
+                url: `/api/chirps/${this.id}`
+            }).then(() => this.div.remove())
+            .catch(e => console.log(e));
         });
     }
 
